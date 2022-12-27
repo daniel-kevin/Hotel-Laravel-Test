@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\RoomController;
+use App\Models\employee;
+use App\Models\Guest;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Route as RoutingRoute;
@@ -33,3 +37,17 @@ Route::get('/sign_in', function () {
         "title" => "Sign In"
     ]);
 });
+// Route::get('/sign_up',[GuestController::class,'index']);
+// Route::resource('/sign_up',GuestController::class);
+// Route::post('/proses_sign_up',[GuestController::class,'test']);
+Route::get('/guest',[GuestController::class,'index'])->name('guest.index');
+Route::get('/guest/create',[GuestController::class,'create'])->name('guest.create');
+Route::post('/guest',[GuestController::class,'store'])->name('guest.store');
+Route::get('/guest/{guest}',[GuestController::class,'show'])->name('guest.show');
+Route::get('/employee',[EmployeeController::class,'index'])->name('employee.index');
+Route::post('/employee',[EmployeeController::class,'store'])->name('employee.store');
+Route::get('/employee/create',[EmployeeController::class,'create'])->name('employee.create');
+Route::get('/employee/{employee}/edit',[EmployeeController::class,'edit'])->name('employee.edit');
+Route::put('/employee/{employee}',[EmployeeController::class,'update'])->name('employee.update');
+Route::get('/employee/{employee}',[EmployeeController::class,'show'])->name(('employee.show'));
+Route::delete('/employee/{employee}',[EmployeeController::class,'destroy'])->name('employee.destroy');
